@@ -2,27 +2,15 @@ name: Auto Pull Request
 on:
   push:
     branches:
-      - BC*
+    - BC*
+
 jobs:
-  release_pull_request:
+  pull-request:
     runs-on: ubuntu-latest
-    name: release_pull_request
     steps:
-    - name: checkout
-      uses: actions/checkout@v3
+    - uses: actions/checkout@v2
+    - name: pull-request
+      uses: repo-sync/pull-request@v2
       with:
-        fetch-depth: 0
-
-    - name: extract git commit data
-      uses: rlespinasse/git-commit-data-action@v1.x
-
-    - name: Create Pull Request
-      uses: peter-evans/create-pull-request@v4
-      with:
-        branch: "auto-pr"
-        base: PROD_DE
-        commit-message: Auto Pull Request
-        title: Auto Pull Request
-        body: Auto Pull Request
-        token: ${{ secrets.GITHUB_TOKEN }}
-        delete-branch: true
+        destination_branch: PROD_DE
+        github_token: ${{ secrets.GITHUB_TOKEN }}
