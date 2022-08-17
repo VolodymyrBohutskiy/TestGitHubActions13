@@ -17,8 +17,6 @@ jobs:
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v4
       with:
-        branch: "auto-pr ${{ env.BRANCH_NAME }}"
-        base: ${{ env.BRANCH_NAME }}
         commit-message: Auto Pull Request
         title: Auto Pull Request
         body: Auto Pull Request
