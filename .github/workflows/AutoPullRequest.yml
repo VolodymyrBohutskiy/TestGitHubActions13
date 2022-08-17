@@ -2,7 +2,7 @@ name: Auto Pull Request
 on:
   push:
     branches:
-      - PROD*
+      - BC*
 jobs:
   release_pull_request:
     runs-on: ubuntu-latest
@@ -19,8 +19,8 @@ jobs:
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v4
       with:
-        branch: "auto-pr ${{ env.BRANCH_NAME }}"
-        base: ${{ env.BRANCH_NAME }}
+        branch: "auto-pr"
+        base: PROD_DE
         commit-message: Auto Pull Request
         title: Auto Pull Request
         body: Auto Pull Request
